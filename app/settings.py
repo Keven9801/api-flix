@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
-    
+
     'genres',
     'actors',
     'movies',
@@ -141,5 +141,4 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    
 }

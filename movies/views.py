@@ -18,14 +18,14 @@ class MovieRetriveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
 
+
 class MovieStatsView(views.APIView):
     permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Movie.objects.all()
 
-
     def get(self, request):
         total_movies = self.queryset.count()
-        movies_by_genre =self.queryset.values('genre__name').annotate(count=Count('id'))
+        movies_by_genre = self.queryset.values('genre__name').annotate(count=Count('id'))
         total_reviews = Review.objects.count()
         average_stars = Review.objects.aggregate(avg_stars=Avg('stars'))['avg_stars']
 
@@ -37,4 +37,3 @@ class MovieStatsView(views.APIView):
                 'average_stars': round(average_stars, 1) if average_stars else 0,
             },
             status=status.HTTP_200_OK)
-    

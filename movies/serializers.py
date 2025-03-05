@@ -18,14 +18,12 @@ class MovieSerializer(serializers.ModelSerializer):
 
         return None
 
-        
     def validate_release_date(self, value):
         if value.year < 1900:
             raise serializers.ValidationError('A data de lançamento não pode ser anterior a 1900 !')
         return value
-    
+
     def validate_resume(self, value):
         if len(value) > 500:
             raise serializers.ValidationError('resumo não pode ter mais do que 500 caracteres !')
         return value
-    
